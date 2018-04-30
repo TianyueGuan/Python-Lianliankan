@@ -1,11 +1,10 @@
-
+# main.py
 from graphics import *
 from button import Button
 import random
 import time
 import threading
 import copy
-
 
 
 class Block:#a block which controls the image in the game
@@ -94,6 +93,7 @@ class Box:# a box which manage whole blocks
                 if (self.flags[i+1][j+1] == -2):
                     self.blocks[i][j].gui_recover(self.w)
                     self.blocks[i][j].undraw()
+                    
     def init_flag(self):#a init of flag
         f_len = self.len+2
         f_wid = self.wid+2
@@ -112,6 +112,7 @@ class Box:# a box which manage whole blocks
                 self.exchange()
             if (self.HaveAnswer() == True):
                 break
+                
     def exchange(self):#exchange function to mess up the block
         x1 = random.randint(1,self.len)
         y1 = random.randint(1,self.wid)
@@ -120,6 +121,7 @@ class Box:# a box which manage whole blocks
         tmp = self.flags[x2][y2]
         self.flags[x2][y2] = self.flags[x1][y1]
         self.flags[x1][y1] = tmp
+        
     def init_block(self):#to init all the block according the flag
         beginY = 5.25
         for i in range(0,self.len):
@@ -168,6 +170,7 @@ class Box:# a box which manage whole blocks
                     tmp.append([i,j])
                     return True
         return False
+    
     def GetLast(self,tmp):#return the last_clicked block num
         tmp.append([self.last_x,self.last_y])
 
@@ -314,6 +317,7 @@ class Box:# a box which manage whole blocks
             if (self.is_double_straight(x1,j,x2,y2,answer) == True):
                 answer.append([x1,j])
                 return True
+            
 class Game:#the game controller to manage the whole game
     def __init__(self,win):
         self.w = win
@@ -345,6 +349,7 @@ class Game:#the game controller to manage the whole game
         self.help_info.draw(win)
         self.tip.draw(win)
         self.timing.draw(win)
+        
     def setLevel(self):#a set level function to decide which level to take
         if (self.level == 1):
             self.len = 6
@@ -356,6 +361,7 @@ class Game:#the game controller to manage the whole game
             self.len = 10
             self.wid = 14
         self.Restart()
+        
     def Restart(self):#restart the game
         self.help_num = self.level*8
         self.time = 50*self.level
