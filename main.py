@@ -317,11 +317,11 @@ class Box:# a box which manage whole blocks
 class Game:#the game controller to manage the whole game
     def __init__(self,win):
         self.w = win
-        self.level = 3
-        self.len = 10
-        self.wid = 14
-        self.time = 150
-        self.help_num = 24
+        self.level = 1
+        self.len = 6
+        self.wid = 8
+        self.time = 50
+        self.help_num = 8
         self.real_time = time.time()
         self.box = Box(win,self.len,self.wid)
         self.box.init_flag()
